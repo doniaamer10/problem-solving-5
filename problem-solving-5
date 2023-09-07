@@ -1,0 +1,33 @@
+function commonCharacters(str1, str2) {
+  // Initialize an empty string to store common characters
+  let commonChars = '';
+
+  // Create a Set to keep track of characters encountered in str2
+  const charsInStr2 = new Set();
+
+  // Remove spaces from str2 and populate charsInStr2
+  str2 = str2.replace(/\s/g, '');
+  for (let char of str2) {
+    charsInStr2.add(char);
+  }
+
+  // Iterate through str1 to find common characters
+  for (let char of str1) {
+    // Skip spaces
+    if (char === ' ') {
+      continue;
+    }
+
+    // Check if the character exists in str2 and has not been added to commonChars
+    if (charsInStr2.has(char) && !commonChars.includes(char)) {
+      commonChars += char;
+    }
+  }
+
+  return commonChars;
+}
+
+// Test the function
+console.log(commonCharacters("hello world", "goodbye")); // Output: "o"
+console.log(commonCharacters("abcde", "defgh")); // Output: "de"
+console.log(commonCharacters("apple", "banana")); // Output: "ae"
